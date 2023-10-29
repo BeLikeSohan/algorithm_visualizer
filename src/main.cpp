@@ -5,6 +5,8 @@
 
 using namespace std;
 
+// Stack stack = Stack();
+
 int main()
 {
     Color darkGreen = Color{20, 160, 133, 255};
@@ -17,13 +19,12 @@ int main()
 
     GUI gui = GUI();
 
-    Stack stack = Stack();
-    stack.push(1);
-    stack.push(2);
-    stack.push(3);
-    stack.push(4);
-    stack.push(5);
-    stack.push(6);
+    // stack.push(1);
+    // stack.push(2);
+    // stack.push(3);
+    // stack.push(4);
+    // stack.push(5);
+    // stack.push(6);
 
     while (!WindowShouldClose())
     {
@@ -31,7 +32,8 @@ int main()
         ClearBackground(DARKBLUE);
 
         gui.drawStackUI(screenHeight, screenWidth);
-        stack.draw(screenHeight, screenWidth);
+
+        Stack::draw(screenHeight, screenWidth);
 
         EndDrawing();
     }

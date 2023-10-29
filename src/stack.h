@@ -4,14 +4,12 @@
 
 class Stack
 {
-private:
-    int size = 0;
-    struct Node *stackHead = NULL;
-
 public:
-    void push(int data);
-    int pop();
-    int getSize();
-    void print();
-    void draw(int height, int width);
+    inline static int size = 0;
+    inline static struct Node *stackHead;
+    static void push(int data);
+    static int pop();
+    static int getSize();
+    static void print();
+    static void draw(int height, int width);
 };
