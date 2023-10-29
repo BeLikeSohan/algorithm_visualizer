@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <string.h>
 #include <raylib.h>
 #include "raygui.h"
 #include "stack.h"
@@ -8,23 +9,23 @@ using namespace std;
 
 struct Node
 {
-    int data;
+    char data[64];
     struct Node *next;
 };
 
-void Stack::push(int data)
+void Stack::push(char *data)
 {
     if (stackHead == NULL)
     {
         struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
-        newNode->data = data;
+        strcpy(newNode->data, data);
         newNode->next = NULL;
         stackHead = newNode;
     }
     else
     {
         struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
-        newNode->data = data;
+        strcpy(newNode->data, data);
         newNode->next = stackHead;
         stackHead = newNode;
     }
@@ -32,10 +33,10 @@ void Stack::push(int data)
     size++;
 }
 
-int Stack::pop()
+char *Stack::pop()
 {
     struct Node *tempNode = stackHead;
-    int data = stackHead->data;
+    char *data = stackHead->data;
     stackHead = stackHead->next;
 
     free(tempNode);
@@ -64,7 +65,7 @@ void Stack::print()
 void Stack::draw(int height, int width)
 {
     int arrSize = size;
-    int arr[arrSize];
+    char *arr[arrSize];
     struct Node *tempNode = stackHead;
     int index = 0;
     while (tempNode != NULL)
@@ -76,7 +77,7 @@ void Stack::draw(int height, int width)
 
     int posX = (width / 2) - 130, posY = 35;
 
-    DrawRectangleLines(posX, posY, 70, height - 230, GREEN);
+    DrawRectangleLines(posX, posY, 70, height - 230, WHITE);
 
     for (int i = arrSize - 1; i >= 0; i--)
     {
@@ -84,6 +85,16 @@ void Stack::draw(int height, int width)
 
         DrawRectangle(posX + 10, y - 10, 50, 50, BLUE);
 
-        DrawText(TextFormat("%d", arr[i]), posX + 15, y - 10, 20, ORANGE);
+        DrawText(TextFormat("%s", arr[i]), posX + 15, y - 10, 20, ORANGE);
+
+        if (i == 0)
+        {
+            DrawText("<-- HEAD", posX + 75, y, 30, WHITE);
+        }
+
+        if (i == arrSize - 1)
+        {
+            DrawText("TAIL -->", posX - 130, y, 30, WHITE);
+        }
     }
 }
