@@ -15,6 +15,9 @@ struct Node
 
 void Stack::push(char *data)
 {
+    if (getSize() >= 6)
+        return;
+
     if (stackHead == NULL)
     {
         struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
@@ -96,5 +99,12 @@ void Stack::draw(int height, int width)
         {
             DrawText("TAIL -->", posX - 130, y, 30, WHITE);
         }
+    }
+
+    DrawText(TextFormat("Size: %d", Stack::getSize()), 20, 30, 30, WHITE);
+
+    if (Stack::getSize() >= 6)
+    {
+        DrawText("Max size reached", 20, 60, 20, RED);
     }
 }
