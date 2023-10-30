@@ -7,6 +7,7 @@
 #include "raygui.h"
 #include "gui.h"
 #include "stack.h"
+#include "bubble_sort.h"
 
 using namespace std;
 
@@ -46,6 +47,26 @@ void GUI::drawStackUI(int height, int width)
             strcpy(codes, TextFormat(stackPopCode, dataInput));
             Stack::pop();
         }
+    }
+
+    DrawText(codes, 20, h - 155, 10, WHITE);
+}
+
+void GUI::drawBubbleSortUI(int height, int width)
+{
+    float h = height, w = width;
+
+    GuiGroupBox(Rectangle{w - 200, 20, 190, h - 40}, "Array Functions");
+    GuiGroupBox(Rectangle{10, 20, w - 220, h - 200}, "Visualization");
+    GuiGroupBox(Rectangle{10, h - 165, w - 220, h - 455}, "Code Example");
+    GuiTextBox(Rectangle{w - 190, 35, 170, 35}, dataInput, 1024, true);
+
+    if (GuiButton(Rectangle{w - 190, 80, 170, 35}, "Push"))
+    {
+        BubbleSort::insert(20);
+    }
+    if (GuiButton(Rectangle{w - 190, 125, 170, 35}, "Pop"))
+    {
     }
 
     DrawText(codes, 20, h - 155, 10, WHITE);

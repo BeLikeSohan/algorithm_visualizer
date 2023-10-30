@@ -3,6 +3,7 @@
 #include "raygui.h"
 #include "stack.h"
 #include "gui.h"
+#include "bubble_sort.h"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ const int screenHeight = 600;
 
 GUI gui = GUI();
 
-int currentSceneId = 0;
+int currentSceneId = 2;
 
 void drawStackScene()
 {
@@ -68,7 +69,18 @@ int main()
     Color darkGreen = Color{20, 160, 133, 255};
 
     InitWindow(screenWidth, screenHeight, "Algorithm Visualizer");
-    SetTargetFPS(60);
+    SetTargetFPS(2);
+
+    BubbleSort::create(9);
+    BubbleSort::insert(9);
+    BubbleSort::insert(8);
+    BubbleSort::insert(7);
+    BubbleSort::insert(6);
+    BubbleSort::insert(5);
+    BubbleSort::insert(4);
+    BubbleSort::insert(3);
+    BubbleSort::insert(2);
+    BubbleSort::insert(1);
 
     while (!WindowShouldClose())
     {
@@ -76,19 +88,22 @@ int main()
         BeginDrawing();
         ClearBackground(DARKBLUE);
 
-        switch (currentSceneId)
-        {
-        case 0:
-            drawSplashScene();
-            break;
-        case 1:
-            drawMenuScene();
-            break;
-        case 2:
-            drawStackScene();
-            break;
-        }
+        // switch (currentSceneId)
+        // {
+        // case 0:
+        //     drawSplashScene();
+        //     break;
+        // case 1:
+        //     drawMenuScene();
+        //     break;
+        // case 2:
+        //     drawStackScene();
+        //     break;
+        // }
 
+        gui.drawBubbleSortUI(screenHeight, screenWidth);
+        BubbleSort::draw(screenHeight, screenWidth);
+        BubbleSort::drawSort(screenHeight, screenWidth);
         EndDrawing();
     }
 
