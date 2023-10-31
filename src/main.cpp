@@ -12,7 +12,7 @@ const int screenHeight = 600;
 
 GUI gui = GUI();
 
-int currentSceneId = 2;
+int currentSceneId = 1;
 
 void drawStackScene()
 {
@@ -38,7 +38,10 @@ void drawSplashScene()
 void drawMenuScene()
 {
     DrawText("Select Algorithm", 20, 20, 50, WHITE);
-    GuiButton(Rectangle{20, 90, 170, 35}, "Bubble Sort");
+    if (GuiButton(Rectangle{20, 90, 170, 35}, "Bubble Sort"))
+    {
+        currentSceneId = 3;
+    }
     GuiButton(Rectangle{200, 90, 170, 35}, "Selection Sort");
     GuiButton(Rectangle{380, 90, 170, 35}, "Merge Sort");
     GuiButton(Rectangle{20, 135, 170, 35}, "Bubble Sort");
@@ -69,18 +72,18 @@ int main()
     Color darkGreen = Color{20, 160, 133, 255};
 
     InitWindow(screenWidth, screenHeight, "Algorithm Visualizer");
-    SetTargetFPS(2);
+    SetTargetFPS(30);
 
     BubbleSort::create(9);
-    BubbleSort::insert(9);
-    BubbleSort::insert(8);
-    BubbleSort::insert(7);
     BubbleSort::insert(6);
-    BubbleSort::insert(5);
-    BubbleSort::insert(4);
     BubbleSort::insert(3);
-    BubbleSort::insert(2);
+    BubbleSort::insert(5);
+    BubbleSort::insert(9);
+    BubbleSort::insert(4);
     BubbleSort::insert(1);
+    BubbleSort::insert(8);
+    BubbleSort::insert(2);
+    BubbleSort::insert(7);
 
     while (!WindowShouldClose())
     {
@@ -88,22 +91,24 @@ int main()
         BeginDrawing();
         ClearBackground(DARKBLUE);
 
-        // switch (currentSceneId)
-        // {
-        // case 0:
-        //     drawSplashScene();
-        //     break;
-        // case 1:
-        //     drawMenuScene();
-        //     break;
-        // case 2:
-        //     drawStackScene();
-        //     break;
-        // }
+        switch (currentSceneId)
+        {
+        case 0:
+            drawSplashScene();
+            break;
+        case 1:
+            drawMenuScene();
+            break;
+        case 2:
+            drawStackScene();
+            break;
+        case 3:
+            gui.drawBubbleSortUI(screenHeight, screenWidth);
+            BubbleSort::draw(screenHeight, screenWidth);
+            BubbleSort::drawSort(screenHeight, screenWidth);
+            break;
+        }
 
-        gui.drawBubbleSortUI(screenHeight, screenWidth);
-        BubbleSort::draw(screenHeight, screenWidth);
-        BubbleSort::drawSort(screenHeight, screenWidth);
         EndDrawing();
     }
 
