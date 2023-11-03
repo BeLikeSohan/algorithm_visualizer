@@ -75,15 +75,15 @@ int main()
     SetTargetFPS(30);
 
     BubbleSort::create(9);
-    BubbleSort::insert(6);
-    BubbleSort::insert(3);
-    BubbleSort::insert(5);
-    BubbleSort::insert(9);
-    BubbleSort::insert(4);
     BubbleSort::insert(1);
-    BubbleSort::insert(8);
     BubbleSort::insert(2);
+    BubbleSort::insert(3);
+    BubbleSort::insert(4);
+    BubbleSort::insert(5);
+    BubbleSort::insert(6);
     BubbleSort::insert(7);
+    BubbleSort::insert(8);
+    BubbleSort::insert(9);
 
     while (!WindowShouldClose())
     {
@@ -91,23 +91,34 @@ int main()
         BeginDrawing();
         ClearBackground(DARKBLUE);
 
-        switch (currentSceneId)
-        {
-        case 0:
-            drawSplashScene();
-            break;
-        case 1:
-            drawMenuScene();
-            break;
-        case 2:
-            drawStackScene();
-            break;
-        case 3:
-            gui.drawBubbleSortUI(screenHeight, screenWidth);
-            BubbleSort::draw(screenHeight, screenWidth);
-            BubbleSort::drawSort(screenHeight, screenWidth);
-            break;
-        }
+        gui.drawBubbleSortUI(screenHeight, screenWidth);
+        BubbleSort::draw(screenHeight, screenWidth);
+
+        // if (BubbleSort::running)
+        // {
+        //     BubbleSort::drawSort(screenHeight, screenWidth);
+        // }
+
+        BubbleSort::running = true;
+        BubbleSort::drawSort(screenHeight, screenWidth);
+
+        // switch (currentSceneId)
+        // {
+        // case 0:
+        //     drawSplashScene();
+        //     break;
+        // case 1:
+        //     drawMenuScene();
+        //     break;
+        // case 2:
+        //     drawStackScene();
+        //     break;
+        // case 3:
+        //     gui.drawBubbleSortUI(screenHeight, screenWidth);
+        //     BubbleSort::draw(screenHeight, screenWidth);
+        //     BubbleSort::drawSort(screenHeight, screenWidth);
+        //     break;
+        // }
 
         EndDrawing();
     }

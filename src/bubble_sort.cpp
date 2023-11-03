@@ -30,6 +30,32 @@ void BubbleSort::draw(int height, int width)
         DrawRectangle(30 + 60 * i, h + 10, 50, 50, BLUE);
         DrawText(TextFormat("%d", array[i]), 30 + 60 * i, h + 10, 20, WHITE);
     }
+
+    if (!running)
+    {
+        if (max_size > 0)
+        {
+            if (size < max_size)
+            {
+                DrawText(TextFormat("Array Size: %d / %d", size, max_size), 20, 30, 30, WHITE);
+            }
+            else
+            {
+                DrawText(TextFormat("Array Size: %d / %d", size, max_size), 20, 30, 30, RED);
+            }
+        }
+    }
+    else
+    {
+        if (array[i] <= array[j])
+        {
+            DrawText(TextFormat("Comparing %d with %d", array[i], array[j]), 20, 30, 30, WHITE);
+        }
+        else
+        {
+            DrawText(TextFormat("Swapping %d with %d", array[i], array[j]), 20, 30, 30, WHITE);
+        }
+    }
 }
 
 void BubbleSort::drawSort(int height, int width)
@@ -57,7 +83,7 @@ void BubbleSort::drawSort(int height, int width)
 
     case 1:
         DrawRectangle((30 + 60 * i) + block_a_posx, (h + 10) + block_a_posy, 50, 50, ORANGE);
-        DrawRectangle((30 + 60 * j) + block_b_posx, (h + 10) + block_b_posy, 50, 50, ORANGE);
+        DrawRectangle((30 + 60 * j) + block_b_posx, (h + 10) + block_b_posy, 50, 50, RED);
         DrawText(TextFormat("%d", array[i]), (30 + 60 * i) + block_a_posx, (h + 10) + block_a_posy, 20, WHITE);
         DrawText(TextFormat("%d", array[j]), (30 + 60 * j) + block_b_posx, (h + 10) + block_b_posy, 20, WHITE);
 
@@ -82,14 +108,17 @@ void BubbleSort::drawSort(int height, int width)
         }
         else if (move_anim_state_a == 1)
         {
-            if (block_a_posx >= (30 + 60 * j) - (30 + 60 * i))
+            if (block_a_posx > (30 + 60 * j) - (30 + 60 * i))
             {
-                block_a_posx = (30 + 60 * j) - ((30 + 60 * i));
-                move_anim_state_a = 2;
+                block_a_posx -= 10;
+            }
+            else if (block_a_posx < (30 + 60 * j) - (30 + 60 * i))
+            {
+                block_a_posx += 10;
             }
             else
             {
-                block_a_posx += 10;
+                move_anim_state_a = 2;
             }
         }
         else if (block_a_posy > 0 && move_anim_state_a == 2)
@@ -101,33 +130,57 @@ void BubbleSort::drawSort(int height, int width)
             }
         }
 
-        if (block_b_posy < 100 && move_anim_state_b == 0)
+        // MOVE BLOCK B
+        if (block_b_posy > -100 && move_anim_state_b == 0)
         {
-            block_b_posy += 10;
-            if (block_b_posy >= 100)
+            block_b_posy -= 10;
+            if (block_b_posy <= -100)
             {
                 move_anim_state_b = 1;
             }
         }
         else if (move_anim_state_b == 1)
         {
-            block_b_posx -= 10;
-            if (block_b_posx <= (30 + 60 * i) - (30 + 60 * j))
+            cout << block_b_posx << " " << (30 + 60 * i) - (30 + 60 * j) << endl;
+
+            // if (block_b_posx > (30 + 60 * i) - (30 + 60 * j))
+            // {
+
+            //     block_b_posx = (30 + 60 * i) - ((30 + 60 * j));
+            //     move_anim_state_b = 2;
+            // }
+            // else
+            // {
+            //     block_b_posx += 10;
+            // }
+
+            if (block_b_posx > (30 + 60 * i) - (30 + 60 * j))
             {
-                block_b_posx = (30 + 60 * i) - ((30 + 60 * j));
+                block_b_posx -= 10;
+            }
+            else if (block_b_posx < (30 + 60 * i) - (30 + 60 * j))
+            {
+                block_b_posx += 10;
+            }
+            else
+            {
+                // block_b_posx += 10;
                 move_anim_state_b = 2;
             }
         }
-        else if (block_b_posy > 0 && move_anim_state_b == 2)
+        else if (block_b_posy >= -100 && move_anim_state_b == 2)
         {
-            block_b_posy -= 10;
             if (block_b_posy == 0)
             {
                 move_anim_state_b = 3;
             }
+            else
+            {
+                block_b_posy += 10;
+            }
         }
 
-        if (move_anim_state_a == 3 && move_anim_state_b == 3)
+        if (move_anim_state_b == 3)
         {
             state = 2;
             move_anim_state_a = 0;
@@ -172,4 +225,9 @@ void BubbleSort::drawSort(int height, int width)
             break;
         }
     }
+}
+
+void BubbleSort::startSorting()
+{
+    running = true;
 }
