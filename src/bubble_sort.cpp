@@ -31,6 +31,12 @@ void BubbleSort::draw(int height, int width)
         DrawText(TextFormat("%d", array[i]), 30 + 60 * i, h + 10, 20, WHITE);
     }
 
+    DrawRectangle(30 + 60 * i, h + 10, 50, 50, ORANGE);
+    DrawText(TextFormat("%d", array[i]), 30 + 60 * i, h + 10, 20, WHITE);
+
+    DrawRectangle(30 + 60 * j, h + 10, 50, 50, ORANGE);
+    DrawText(TextFormat("%d", array[j]), 30 + 60 * j, h + 10, 20, WHITE);
+
     if (!running)
     {
         if (max_size > 0)
@@ -189,6 +195,12 @@ void BubbleSort::drawSort(int height, int width)
             block_a_posy = 0;
             block_b_posx = 0;
             block_b_posy = 0;
+
+            if (one_step)
+            {
+                one_step = false;
+                running = false;
+            }
         }
         break;
 
@@ -230,4 +242,10 @@ void BubbleSort::drawSort(int height, int width)
 void BubbleSort::startSorting()
 {
     running = true;
+}
+
+void BubbleSort::oneStep()
+{
+    running = true;
+    one_step = true;
 }

@@ -96,6 +96,11 @@ void GUI::drawBubbleSortUI(int height, int width)
         {
             BubbleSort::startSorting();
         }
+
+        if (GuiButton(Rectangle{w - 190, 170, 170, 35}, ">>"))
+        {
+            BubbleSort::oneStep();
+        }
     }
 
     DrawText(codes, 20, h - 155, 10, WHITE);

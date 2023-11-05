@@ -94,13 +94,13 @@ int main()
         gui.drawBubbleSortUI(screenHeight, screenWidth);
         BubbleSort::draw(screenHeight, screenWidth);
 
-        // if (BubbleSort::running)
-        // {
-        //     BubbleSort::drawSort(screenHeight, screenWidth);
-        // }
+        if (BubbleSort::running)
+        {
+            BubbleSort::drawSort(screenHeight, screenWidth);
+        }
 
-        BubbleSort::running = true;
-        BubbleSort::drawSort(screenHeight, screenWidth);
+        // BubbleSort::running = true;
+        // BubbleSort::drawSort(screenHeight, screenWidth);
 
         // switch (currentSceneId)
         // {
