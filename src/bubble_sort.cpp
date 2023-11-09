@@ -89,7 +89,7 @@ void BubbleSort::drawSort(int height, int width)
 
     case 1:
         DrawRectangle((30 + 60 * i) + block_a_posx, (h + 10) + block_a_posy, 50, 50, ORANGE);
-        DrawRectangle((30 + 60 * j) + block_b_posx, (h + 10) + block_b_posy, 50, 50, RED);
+        DrawRectangle((30 + 60 * j) + block_b_posx, (h + 10) + block_b_posy, 50, 50, ORANGE);
         DrawText(TextFormat("%d", array[i]), (30 + 60 * i) + block_a_posx, (h + 10) + block_a_posy, 20, WHITE);
         DrawText(TextFormat("%d", array[j]), (30 + 60 * j) + block_b_posx, (h + 10) + block_b_posy, 20, WHITE);
 
@@ -195,12 +195,6 @@ void BubbleSort::drawSort(int height, int width)
             block_a_posy = 0;
             block_b_posx = 0;
             block_b_posy = 0;
-
-            if (one_step)
-            {
-                one_step = false;
-                running = false;
-            }
         }
         break;
 
@@ -222,6 +216,13 @@ void BubbleSort::drawSort(int height, int width)
         }
 
         state = 0;
+
+        if (one_step)
+        {
+            one_step = false;
+            running = false;
+        }
+
         break;
 
     case 3:

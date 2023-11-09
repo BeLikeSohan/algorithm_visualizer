@@ -25,9 +25,9 @@ void drawSplashScene()
 {
     DrawText("Algorithm Visualizer", 20, 20, 50, WHITE);
     DrawText("Version: 1.0", 20, 70, 30, WHITE);
-    DrawText("Made by:", 20, 115, 20, WHITE);
-    DrawText("Washiul Alam Sohan (@belikesohan)", 20, 140, 20, WHITE);
-    DrawText("Marjan Haque Sumaiya (@mrjnhq)", 20, 165, 20, WHITE);
+    // DrawText("Made by:", 20, 115, 20, WHITE);
+    // DrawText("Washiul Alam Sohan (@belikesohan)", 20, 140, 20, WHITE);
+    // DrawText("Marjan Haque Sumaiya (@mrjnhq)", 20, 165, 20, WHITE);
 
     if (GuiButton(Rectangle{screenWidth - 190, screenHeight - 60, 170, 35}, "Start"))
     {
@@ -74,16 +74,16 @@ int main()
     InitWindow(screenWidth, screenHeight, "Algorithm Visualizer");
     SetTargetFPS(30);
 
-    BubbleSort::create(9);
-    BubbleSort::insert(1);
-    BubbleSort::insert(2);
-    BubbleSort::insert(3);
-    BubbleSort::insert(4);
-    BubbleSort::insert(5);
-    BubbleSort::insert(6);
-    BubbleSort::insert(7);
-    BubbleSort::insert(8);
-    BubbleSort::insert(9);
+    // BubbleSort::create(9);
+    // BubbleSort::insert(1);
+    // BubbleSort::insert(2);
+    // BubbleSort::insert(3);
+    // BubbleSort::insert(4);
+    // BubbleSort::insert(5);
+    // BubbleSort::insert(6);
+    // BubbleSort::insert(7);
+    // BubbleSort::insert(8);
+    // BubbleSort::insert(9);
 
     while (!WindowShouldClose())
     {
@@ -91,34 +91,34 @@ int main()
         BeginDrawing();
         ClearBackground(DARKBLUE);
 
-        gui.drawBubbleSortUI(screenHeight, screenWidth);
-        BubbleSort::draw(screenHeight, screenWidth);
+        // gui.drawBubbleSortUI(screenHeight, screenWidth);
+        // BubbleSort::draw(screenHeight, screenWidth);
 
-        if (BubbleSort::running)
-        {
-            BubbleSort::drawSort(screenHeight, screenWidth);
-        }
+        // if (BubbleSort::running)
+        // {
+        //     BubbleSort::drawSort(screenHeight, screenWidth);
+        // }
 
         // BubbleSort::running = true;
         // BubbleSort::drawSort(screenHeight, screenWidth);
 
-        // switch (currentSceneId)
-        // {
-        // case 0:
-        //     drawSplashScene();
-        //     break;
-        // case 1:
-        //     drawMenuScene();
-        //     break;
-        // case 2:
-        //     drawStackScene();
-        //     break;
-        // case 3:
-        //     gui.drawBubbleSortUI(screenHeight, screenWidth);
-        //     BubbleSort::draw(screenHeight, screenWidth);
-        //     BubbleSort::drawSort(screenHeight, screenWidth);
-        //     break;
-        // }
+        switch (currentSceneId)
+        {
+        case 0:
+            drawSplashScene();
+            break;
+        case 1:
+            drawMenuScene();
+            break;
+        case 2:
+            drawStackScene();
+            break;
+        case 3:
+            gui.drawBubbleSortUI(screenHeight, screenWidth);
+            BubbleSort::draw(screenHeight, screenWidth);
+            // BubbleSort::drawSort(screenHeight, screenWidth);
+            break;
+        }
 
         EndDrawing();
     }
