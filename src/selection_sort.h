@@ -2,7 +2,7 @@
 
 #pragma once
 
-class BubbleSort
+class SelectionSort
 {
 public:
     inline static int size = 0;
@@ -20,7 +20,6 @@ public:
     inline static int counter = 0;
     inline static int task_state = 0;
     inline static bool one_step = false;
-    inline static bool moved = false;
     static void create(int size_value);
     static void insert(int value);
     static void draw(int height, int width);

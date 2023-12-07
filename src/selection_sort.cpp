@@ -3,22 +3,22 @@
 #include <string.h>
 #include <raylib.h>
 #include "raygui.h"
-#include "bubble_sort.h"
+#include "selection_sort.h"
 
 using namespace std;
 
-void BubbleSort::insert(int value)
+void SelectionSort::insert(int value)
 {
     array[size] = value;
     size++;
 }
 
-void BubbleSort::create(int size_value)
+void SelectionSort::create(int size_value)
 {
     max_size = size_value;
 }
 
-void BubbleSort::draw(int height, int width)
+void SelectionSort::draw(int height, int width)
 {
     int h = (height / 2) - 100;
     int w = (width / 2) - 150;
@@ -67,7 +67,7 @@ void BubbleSort::draw(int height, int width)
     }
 }
 
-void BubbleSort::drawSort(int height, int width)
+void SelectionSort::drawSort(int height, int width)
 {
     if (!running)
         return;
@@ -209,20 +209,13 @@ void BubbleSort::drawSort(int height, int width)
         if (array[i] > array[j])
         {
             swap(array[i], array[j]);
-            moved = true;
         }
 
         i++;
-        j = i + 1;
-
-        if (j >= size)
+        if (i >= size)
         {
+            j++;
             i = 0;
-            j = 1;
-            cout << "moved " << moved << " running " << running << endl;
-            if (!moved)
-                running = false;
-            moved = false;
         }
 
         state = 0;
@@ -250,12 +243,12 @@ void BubbleSort::drawSort(int height, int width)
     }
 }
 
-void BubbleSort::startSorting()
+void SelectionSort::startSorting()
 {
     running = true;
 }
 
-void BubbleSort::oneStep()
+void SelectionSort::oneStep()
 {
     running = true;
     one_step = true;
